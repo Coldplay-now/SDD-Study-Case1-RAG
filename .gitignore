@@ -209,3 +209,6 @@ benchmark_results/
 *.egg-info/
 dist/
 build/
+
+# Project specific files to exclude from version control
+preview_ascii.sh
