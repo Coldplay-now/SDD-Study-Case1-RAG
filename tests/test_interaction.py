@@ -12,7 +12,7 @@ import logging
 from typing import List, Dict, Any
 
 # 添加src目录到路径
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
     from src.config_manager import ConfigManager

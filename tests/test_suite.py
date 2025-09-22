@@ -12,7 +12,7 @@ import logging
 from typing import List, Dict, Any
 
 # 添加src目录到Python路径
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # 导入核心模块
 from src.embedding_model import EmbeddingModel

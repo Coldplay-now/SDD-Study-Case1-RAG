@@ -11,7 +11,7 @@ import os
 import logging
 
 # 添加项目路径
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.config_manager import ConfigManager
 from src.chat_service import ChatService

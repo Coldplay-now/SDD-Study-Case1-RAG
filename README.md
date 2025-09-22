@@ -15,6 +15,12 @@
 [![Chinese](https://img.shields.io/badge/Language-中文优化-red.svg)](README.md)
 [![Streaming](https://img.shields.io/badge/Output-Streaming-brightgreen.svg)](README.md)
 
+## 🚀 系统启动界面
+
+![RAG学习系统启动界面](pic/20250922-135235.png)
+
+*RAG 智能学习系统启动界面 - 展示系统特性、使用指南和示例问题*
+
 一个基于检索增强生成（RAG）技术的智能问答系统，专为中文学习场景优化设计。支持Markdown文档的智能索引和检索，提供高质量的AI问答体验。
 
 ## 🌟 项目特色
@@ -28,13 +34,47 @@
 - **📊 详细日志**: 完整的操作日志和性能监控
 - **🚀 高性能**: 支持批量处理和缓存机制
 
+## 🛠️ 开发方法论
+
+本项目采用了 **SDD (Software Development Document) 开发方法论**，通过标准化的文档驱动开发流程，确保项目的高质量交付。
+
+### 📚 SDD Agent 系统
+
+本项目的开发过程使用了 [SDD-Agent-Prompt](https://github.com/Coldplay-now/SDD-Agent-Prompt) <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference> 项目提供的专业化 AI Agent 系统，实现了从需求分析到任务分解的完整开发流程：
+
+- **🎯 需求构建 Agent**: 智能识别和处理需求中的噪音与缺口，生成结构化的产品需求文档 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **📊 需求评估 Agent**: 严格评估 PRD 文档的"低噪音"质量，消除歧义和冗余 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **⚙️ 技术规格 Agent**: 将 PRD 转换为详细的技术实现规格，包含架构设计和技术选型 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **📋 任务分解 Agent**: 将技术规格分解为具体的开发任务，进行智能任务分解和依赖关系分析 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+
+### 🔄 开发流程
+
+```mermaid
+graph TD
+    A[原始需求] --> B[需求构建Agent]
+    B --> C[产品需求文档]
+    C --> H[需求评估Agent]
+    H --> I[评估报告 & 改进建议]
+    I --> C
+    C --> D[技术规格构建Agent]
+    D --> E[技术规格文档]
+    E --> F[任务列表构建Agent]
+    F --> G[详细开发任务列表]
+```
+
+通过这套 SDD 方法论，本项目实现了：
+- **🔍 智能需求分析**: 自动识别和处理需求中的噪音与缺口 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **📝 自动文档生成**: 智能生成 PRD 和技术规格文档 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **⚡ 高效任务分解**: 将复杂项目分解为可执行的任务列表 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+- **🤖 流程标准化**: 建立可复用的软件开发工作流程 <mcreference link="https://github.com/Coldplay-now/SDD-Agent-Prompt" index="0">0</mcreference>
+
 ## 📋 项目文档
 
 本项目提供了完整的项目管理和技术文档，帮助您深入了解系统设计和开发过程：
 
 ### 📄 核心文档
 
-#### 1. [产品需求文档 (PRD)](PRD_RAG学习系统_v1.0.md)
+#### 1. [产品需求文档 (PRD)](SDD/PRD_RAG学习系统_v1.0.md)
 - **文档价值**: 完整定义了RAG学习系统的产品愿景、功能需求和用户体验设计
 - **主要内容**: 
   - 产品概述与目标用户分析
@@ -44,7 +84,7 @@
 - **适用人群**: 产品经理、项目负责人、开发团队成员
 - **使用场景**: 项目规划、需求评审、功能验收
 
-#### 2. [系统设计文档 (SPEC)](SPEC_RAG学习系统_简化版_v1.0.md)
+#### 2. [系统设计文档 (SPEC)](SDD/SPEC_RAG学习系统_简化版_v1.0.md)
 - **文档价值**: 提供了系统的技术架构设计和实现方案，是开发的技术蓝图
 - **主要内容**:
   - 系统整体架构设计
@@ -54,7 +94,7 @@
 - **适用人群**: 架构师、开发工程师、技术负责人
 - **使用场景**: 技术评审、代码开发、系统维护
 
-#### 3. [任务清单 (TaskList)](TaskList_RAG学习系统_v1.0.md)
+#### 3. [任务清单 (TaskList)](SDD/TaskList_RAG学习系统_v1.0.md)
 - **文档价值**: 详细的开发任务分解和进度管理，确保项目有序推进
 - **主要内容**:
   - 开发任务分解与优先级
@@ -112,13 +152,45 @@
 
 ### 数据流程
 
-1. **配置加载**: ConfigManager 从环境变量加载配置
-2. **文档处理**: DocumentProcessor 解析Markdown文档并分块
-3. **向量化**: EmbeddingModel 将文档块转换为向量
-4. **索引构建**: VectorStore 使用FAISS建立向量索引
-5. **检索**: RAGRetriever 检索相关文档块
-6. **生成**: ChatService 调用DeepSeek API生成回答
-7. **输出**: 流式显示生成的回答内容
+以下是 RAG 系统的完整数据流程时序图，展示了从系统启动到问答循环的详细交互过程：
+
+```mermaid
+sequenceDiagram
+    participant U as 用户
+    participant M as main.py
+    participant CM as ConfigManager
+    participant DP as DocumentProcessor
+    participant EM as EmbeddingModel
+    participant VS as VectorStore
+    participant RT as RAGRetriever
+    participant CS as ChatService
+    
+    U->>M: 启动系统
+    M->>CM: 加载配置
+    M->>EM: 初始化嵌入模型
+    M->>DP: 加载文档
+    DP->>EM: 文档分块向量化
+    EM->>VS: 构建FAISS向量索引
+    M->>RT: 初始化RAG检索器
+    M->>CS: 初始化对话服务
+    
+    loop 问答循环
+        U->>M: 输入问题
+        M->>CS: 生成答案（流式）
+        CS->>RT: 检索相关文档
+        RT->>VS: 向量相似度搜索
+        VS-->>RT: 返回检索结果
+        RT-->>CS: 传递检索结果
+        CS->>CS: 调用DeepSeek API生成回答
+        CS-->>M: 流式返回答案
+        M->>U: 实时显示结果
+    end
+```
+
+**流程说明**：
+1. **系统初始化阶段**：加载配置、初始化各个组件、构建向量索引
+2. **问答循环阶段**：接收用户问题、检索相关文档、生成并流式输出答案
+3. **核心特性**：支持流式输出、实时反馈、高效向量检索
 
 ## 📋 系统要求
 
@@ -492,20 +564,28 @@ rag_learning_system/
 │   ├── config_manager.py             # 配置管理模块
 │   ├── document_processor.py         # 文档处理模块（Markdown解析、分块）
 │   ├── embedding_model.py            # 嵌入模型模块（SentenceTransformer）
+│   ├── embedding_service.py          # 嵌入服务模块
 │   ├── vector_store.py               # 向量存储模块（FAISS索引）
 │   ├── retriever.py                  # RAG检索模块
 │   └── chat_service.py              # 对话服务模块（DeepSeek API集成）
 ├── data/                             # 数据目录
 │   ├── documents/                   # 原始文档存储
 │   └── vectors/                     # 向量索引文件
-├── tests/                            # 测试脚本
-│   ├── test_*.py                    # 单元测试
+├── tests/                            # 测试脚本目录
+│   ├── test_*.py                    # 单元测试文件
 │   ├── comprehensive_test.py        # 综合测试
+│   ├── auto_test.py                 # 自动化测试
 │   └── test_interaction.py          # 交互测试
+├── SDD/                              # 软件设计文档目录
+│   ├── PRD_RAG学习系统_v1.0.md       # 产品需求文档
+│   ├── SPEC_RAG学习系统_简化版_v1.0.md # 系统设计文档
+│   └── TaskList_RAG学习系统_v1.0.md   # 任务清单文档
 ├── .env                             # 环境变量
 ├── .env.example                     # 环境变量模板
+├── config.yaml                      # 配置文件
 ├── requirements.txt                 # Python依赖
 ├── main.py                          # 主程序入口
+├── start_rag.sh                     # 启动脚本
 └── README.md                        # 项目文档
 ```
 
@@ -564,6 +644,27 @@ class CustomLLMService:
 ## 🐛 故障排除
 
 ### 常见问题及解决方案
+
+#### 0. 依赖版本兼容性
+
+**问题**: 旧版本依赖导致的兼容性问题
+```bash
+cannot import name 'cached_download' from 'huggingface_hub'
+TypeError: unexpected keyword argument 'proxies'
+```
+**解决方案**:
+```bash
+# 升级核心依赖到最新兼容版本
+pip install --upgrade sentence-transformers  # 升级到 5.1.0+
+pip install --upgrade openai                 # 升级到 1.108.1+
+
+# 或者重新安装所有依赖
+pip install -r requirements.txt --upgrade
+```
+
+**说明**: 系统已更新到以下版本以确保兼容性：
+- `sentence-transformers==5.1.0` (解决 huggingface_hub 兼容性问题)
+- `openai==1.108.1` (解决 API 调用参数兼容性问题)
 
 #### 1. 安装问题
 

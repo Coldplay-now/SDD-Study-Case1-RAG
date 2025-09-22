@@ -6,6 +6,7 @@
 - **目标用户**: RAG技术学习者、AI开发初学者
 - **核心价值**: 提供完整的RAG技术实践平台，帮助学习者理解从文档处理到问答生成的全流程
 - **项目状态**: 已完成MVP版本，系统可正常运行
+- **最新更新**: 已升级核心依赖库版本以确保兼容性（sentence-transformers 5.1.0, openai 1.108.1）
 
 ## 2. 需求边界与约束
 - **功能边界**: 
@@ -17,6 +18,7 @@
   - 本地BAAI/bge-small-zh-v1.5嵌入模型
   - FAISS向量数据库（IndexFlatIP）
   - DeepSeek API (deepseek-chat模型，OpenAI格式调用)
+  - 核心依赖版本：sentence-transformers==5.1.0, openai==1.108.1
   - 配置管理：统一config.yaml配置文件 + 环境变量覆盖
   - 错误处理：完善的异常处理 + 用户友好提示
 - **资源约束**: 

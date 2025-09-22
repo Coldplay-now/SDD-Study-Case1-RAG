@@ -9,9 +9,9 @@ import os
 from pathlib import Path
 
 # 添加src目录到Python路径
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from document_processor import DocumentProcessor
+from src.document_processor import DocumentProcessor
 from src.embedding_model import EmbeddingModel
 from src.vector_store import VectorStore
 from src.retriever import RAGRetriever

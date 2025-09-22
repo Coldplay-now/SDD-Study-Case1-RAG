@@ -9,9 +9,9 @@ import logging
 from pathlib import Path
 
 # 添加src目录到Python路径
-sys.path.append(str(Path(__file__).parent / "src"))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config_manager import ConfigManager
+from src.config_manager import ConfigManager
 from src.embedding_model import EmbeddingModel
 from src.retriever import RAGRetriever
 
