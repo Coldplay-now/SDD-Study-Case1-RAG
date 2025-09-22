@@ -1,0 +1,13 @@
+# 核心依赖
+sentence-transformers==2.2.2
+faiss-cpu==1.7.4
+openai==1.3.0
+python-dotenv==1.0.0
+pyyaml==6.0.1
+
+# 工具库
+numpy==1.24.3
+tqdm==4.66.1
+
+# 开发工具
+pytest==7.4.3

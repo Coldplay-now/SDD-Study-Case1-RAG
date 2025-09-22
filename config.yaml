@@ -1,0 +1,35 @@
+# RAG学习系统配置文件
+# 版本: v1.0
+
+# 模型配置
+embedding:
+  model_name: "BAAI/bge-small-zh-v1.5"
+  device: "cpu"
+  max_length: 512
+  batch_size: 32
+
+# 检索配置
+retrieval:
+  chunk_size: 500
+  chunk_overlap: 50
+  top_k: 5
+  similarity_threshold: 0.3
+
+# API配置
+llm:
+  model: "deepseek-chat"
+  max_tokens: 1000
+  temperature: 0.7
+  stream: true
+
+# 路径配置
+paths:
+  documents: "./data/documents"
+  vectors: "./data/vectors"
+  cache: "./data/cache"
+
+# 系统配置
+system:
+  log_level: "INFO"
+  cache_enabled: true
+  max_documents: 100
