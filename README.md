@@ -123,7 +123,7 @@ graph TD
 ### 核心模块
 
 ```mermaid
-graph TB
+graph TD
     subgraph "前端处理层"
         DP[DocumentProcessor<br/>📄 文档处理器<br/>• Markdown解析<br/>• 内容分块<br/>• 元数据提取]
         EM[EmbeddingModel<br/>🧠 嵌入模型<br/>• SentenceTransformer<br/>• 向量生成<br/>• 批量处理]
@@ -139,13 +139,18 @@ graph TB
         RR[RAGRetriever<br/>🔍 检索器<br/>• 相似度检索<br/>• 结果排序<br/>• 阈值过滤]
     end
     
-    %% 连接关系
-    DP --> CM
-    EM --> CM
-    CS --> CM
-    CM --> VS
-    CM --> RR
-    VS <--> RR
+    %% 连接关系与序号描述
+    DP -->|①配置获取| CM
+    EM -->|②模型配置| CM
+    CS -->|③服务配置| CM
+    CM -->|④索引配置| VS
+    CM -->|⑤检索配置| RR
+    VS <-->|⑥数据交换| RR
+    
+    %% 数据流向补充
+    DP -.->|⑦文档向量化| EM
+    EM -.->|⑧向量存储| VS
+    RR -.->|⑨检索结果| CS
     
     %% 样式定义
     classDef processor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
@@ -160,6 +165,21 @@ graph TB
     class CM config
     class VS,RR storage
 ```
+
+### 🔄 数据流向说明
+
+**配置流向（实线）：**
+- ① **配置获取**：DocumentProcessor 从 ConfigManager 获取文档处理配置
+- ② **模型配置**：EmbeddingModel 从 ConfigManager 获取模型参数配置
+- ③ **服务配置**：ChatService 从 ConfigManager 获取 API 和服务配置
+- ④ **索引配置**：ConfigManager 向 VectorStore 提供索引和存储配置
+- ⑤ **检索配置**：ConfigManager 向 RAGRetriever 提供检索参数配置
+- ⑥ **数据交换**：VectorStore 与 RAGRetriever 进行双向数据交换
+
+**数据流向（虚线）：**
+- ⑦ **文档向量化**：DocumentProcessor 将处理后的文档发送给 EmbeddingModel
+- ⑧ **向量存储**：EmbeddingModel 将生成的向量存储到 VectorStore
+- ⑨ **检索结果**：RAGRetriever 将检索结果返回给 ChatService
 
 ### 数据流程
 
